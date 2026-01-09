@@ -10,9 +10,22 @@ PRODUCTS = [
 
 class ProductListAPI(APIView):
     def get(self, request):
-        serializer = ProductSerializer(PRODUCTS, many=True)
-        return Response({
-            "success": True,
-            "data": serializer.data
-        })
+        id = request.query_params.get("id")
+
+        if not id:
+
+            serializer = ProductSerializer(PRODUCTS, many=True)
+            return Response({
+                "success": True,
+                "data": serializer.data
+            })
+        else:
+            product = next((item for item in PRODUCTS if item["id"] == int(id)), None)
+            if product:
+                serializer = ProductSerializer(product)
+                return Response({
+                    "success": True,
+                    "data": serializer.data
+                })
+            
 
