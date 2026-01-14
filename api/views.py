@@ -5,7 +5,8 @@ from .serializers import ProductSerializer
 PRODUCTS = [
     {"id": 1, "name": "Laptop", "price": 65000},
     {"id": 2, "name": "Phone", "price": 25000},
-   
+    {"id": 3, "name": "Tablet", "price": 30000},
+    {"id": 4, "name": "Headphones", "price": 2000},
 ]
 
 class ProductListAPI(APIView):
